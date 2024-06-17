@@ -7,6 +7,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+
 const secert = 'mausooq';
 // define mongoose schema
 const userSchema = new mongoose.Schema({
@@ -66,7 +67,7 @@ app.post('/admin/signup',async (req,res) => {
 }
 })
 
-app.post('/admin/login', async (req,res) =>{
+app.post('/admin/signin', async (req,res) =>{
     const {username,password} = req.body;
     const adminExist = await Admin.findOne({username,password});
     if(adminExist){

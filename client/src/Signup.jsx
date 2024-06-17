@@ -2,14 +2,20 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
 import { Typography } from '@mui/material';
+import { useState } from 'react';
 
 function Signup(){
+     
+    const [username,setUsername] = useState('')
+    const [password,setPassword] = useState('')
+
    return <div style={{
     display:"flex",
     justifyContent:"center",
     alignItems:"center",
     flexDirection:"column",
    }}>
+   
     <div style={{
         paddingTop:150,
         marginBottom: "10px"
@@ -19,10 +25,14 @@ function Signup(){
     </Typography>
     </div>
     <Card variant='outlined' style={{ width:400, padding:20, backgroundColor:"#FBF9F1",}}>
-    <TextField fullWidth id="username" label="USERNAME" variant="outlined" />
+    <TextField fullWidth onChange={(e) => {
+        setUsername(e.target.value)
+    }} label="USERNAME" variant="outlined" />
     <br />
     <br />
-    <TextField fullWidth id="password" label="PASSWORD" type="password"variant="outlined" />
+    <TextField fullWidth onChange={(e) => {
+        setPassword(e.target.value)
+    }} label="PASSWORD" type="password"variant="outlined" />
     <br />
     <br />
     <div style={{
@@ -33,14 +43,15 @@ function Signup(){
     size="large"
     variant="outlined"
     onClick={() => {
-        let username = document.getElementById('username').value;
-        let password = document.getElementById('password').value;
         fetch("http://localhost:3000/admin/signup", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ 
+                username:username,
+                password:password
+             })
         })
         .then(response => response.json())
         .then(data => {
