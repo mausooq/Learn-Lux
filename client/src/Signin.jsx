@@ -3,7 +3,9 @@ import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
 import { Typography } from '@mui/material';
 import {useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 function Signin(){
+    const navigate =useNavigate()
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
     
@@ -51,6 +53,7 @@ function Signin(){
     .then(data => {
         localStorage.setItem("token",data.token)
         console.log('Success:', data);
+        navigate('/admin/addcourse')
     })
     .catch(error => {
         console.error('Error:', error);

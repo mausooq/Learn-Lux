@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Signup from './Signup.jsx'
 import Signin from './Signin'
 import Appbar from './Appbar.jsx'
+import Header from './Header.jsx'
+import AddCourse from './Addcourse.jsx'
 import './App.css'
 
 function App() {
@@ -11,12 +13,20 @@ function App() {
       height: "100vh",
       background: "#EEEEEE"
     }}>
-      <Appbar />
      <Router>
             <Routes>
-                <Route path="/signin" element={<Signin />} />
-                <Route path="/signin" element={<Signin />} />
-                <Route path="/signup" element={<Signup />}/>
+                <Route path="/admin/addcourse" element={<>
+                <Header />
+                <AddCourse />
+                </>} />
+                <Route path="/admin/signin" element={
+                  <><Appbar />     
+                  <Signin /></>
+                }/>
+                <Route path="/admin/signup" element={
+                 <><Appbar />
+                  <Signup/></> 
+                }/>
             </Routes>
         </Router>
     </div>
