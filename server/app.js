@@ -52,6 +52,12 @@ const authenticateJwt = (req,res,next) => {
         return res.status(401).send({msg:"No token provided"});
 }
 
+app.get('/admin/me',authenticateJwt,async (req,res) =>{
+  res.json({
+    username:user.username
+  })
+})
+
 app.post('/admin/signup',async (req,res) => {
     const {username,password} = req.body;
     const admin = await Admin.findOne({username})
