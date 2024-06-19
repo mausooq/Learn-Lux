@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Signup from './Signup.jsx'
 import Signin from './Signin'
 import Appbar from './Appbar.jsx'
-import Header from './Header.jsx'
 import AddCourse from './Addcourse.jsx'
 import './App.css'
 
@@ -16,7 +15,6 @@ function App() {
      <Router>
             <Routes>
                 <Route path="/admin/addcourse" element={<>
-                <Header />
                 <AddCourse />
                 </>} />
                 <Route path="/admin/signin" element={
