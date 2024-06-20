@@ -1,27 +1,29 @@
 import { Button, Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 function Appbar(){
     const navigate = useNavigate()
-    const [userEmail,setUserEmail] = useState('')
+    const [UserEmail,setUserEmail] = useState('')
+
     useEffect (() =>{
         fetch('http://localhost:3000/admin/me',{
             method:'GET',
             headers:{
                 'Content-Type': 'application/json',
-                 'Authorization': "Bearer" + localStorage.getItem('token')
+                 'Authorization': "Bearer " + localStorage.getItem('token')
             }
-        }).then( response => response.json)
+        }).then( response => response.json())
         .then( data =>{
             if(data.username){
-                setUserEmail = data.username
+                console.log(data.username);
+                setUserEmail(data.username)
             }
         })
     },[])
 
 
-    if(userEmail){
+    if(!UserEmail){
             return <div style={{
                 padding:10,
                 display:"flex",
@@ -56,7 +58,19 @@ else{
         LEARN LUX
     </Typography>
     </div> 
-
+    <div style={{
+        display:"flex",
+    }}><Typography   style={{
+        marginRight:10,
+        marginTop:5
+    }}>{UserEmail}</Typography>
+         
+            <Button size="small" variant="contained"
+            onClick={()=>{
+                localStorage.setItem('token',null)
+                window.location="/admin/signin"
+            }}>Logout</Button>
+            </div>
     </div>
 }
 }

@@ -15,6 +15,7 @@ function App() {
      <Router>
             <Routes>
                 <Route path="/admin/addcourse" element={<>
+                <Appbar /> 
                 <AddCourse />
                 </>} />
                 <Route path="/admin/signin" element={

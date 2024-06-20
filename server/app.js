@@ -53,6 +53,7 @@ const authenticateJwt = (req,res,next) => {
 }
 
 app.get('/admin/me',authenticateJwt,async (req,res) =>{
+  const user = req.user
   res.json({
     username:user.username
   })

@@ -53,7 +53,7 @@ function Signin(){
     .then(data => {
         localStorage.setItem("token",data.token)
         console.log('Success:', data);
-        navigate('/admin/addcourse')
+        window.location='/admin/addcourse'
     })
     .catch(error => {
         console.error('Error:', error);
