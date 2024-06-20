@@ -3,6 +3,7 @@ import Signup from './Signup.jsx'
 import Signin from './Signin'
 import Appbar from './Appbar.jsx'
 import AddCourse from './Addcourse.jsx'
+import Courses from './Courses.jsx'
 import './App.css'
 
 function App() {
@@ -17,6 +18,10 @@ function App() {
                 <Route path="/admin/addcourse" element={<>
                 <Appbar /> 
                 <AddCourse />
+                </>} />
+                <Route path="/admin/courses" element={<>
+                <Appbar /> 
+                <Courses />
                 </>} />
                 <Route path="/admin/signin" element={
                   <><Appbar />     

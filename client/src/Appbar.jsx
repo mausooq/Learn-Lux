@@ -16,7 +16,6 @@ function Appbar(){
         }).then( response => response.json())
         .then( data =>{
             if(data.username){
-                console.log(data.username);
                 setUserEmail(data.username)
             }
         })
