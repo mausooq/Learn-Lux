@@ -1,9 +1,10 @@
+import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 
 
 function Courses(){
-    const [course,setCourse] = useState([])
+    let [courses,setCourses] = useState([])
 
     useEffect(() => {
         fetch('http://localhost:3000/admin/courses',{
@@ -14,15 +15,27 @@ function Courses(){
             }
         }).then(response => response.json())
         .then( data =>{
-             if(data){
-                setCourse(data)
-            }
+                // console.log(data.courses);
+                setCourses(data)
         } 
         )
     },[])
     return <div>
- 
+        <div>
+<Typography variant="h6" style={{padding:"25px 0 0 20px "}}>Course</Typography>
+        </div>
+        {courses.map((course, index) => {
+    return <Course key={index} course={course}/>
+})}
+    
 </div>
+}
+function Course(props){
+    return <div>
+        {props.course.title}
+        <br />
+        {props.course.description}
+    </div>
 }
 
 export default Courses;

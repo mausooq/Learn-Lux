@@ -75,7 +75,8 @@ return <div style={{
             },
             body:JSON.stringify({
                 title,description,imageLink:image,price,published:true
-            })
+            }).then(response => response.json())
+            .then(data => console.log(data))
         },
        
     )
