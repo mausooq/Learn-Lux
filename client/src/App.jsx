@@ -11,7 +11,7 @@ function App() {
     <div style={{
       width:"100vw",
       height: "100vh",
-      background: "#EEEEEE"
+      background: "#EEEEEE",
     }}>
      <Router>
             <Routes>
