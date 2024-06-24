@@ -1,70 +1,59 @@
-import { Typography,Box } from "@mui/material";
-import { Card,CardMedia,CardContent } from "@mui/material";
-import { useEffect, useState } from "react";
-import { FaRupeeSign } from "react-icons/fa";
+import React, { useEffect, useState } from 'react';
+import { Typography, Grid, Paper } from '@mui/material';
+import { FaRupeeSign } from 'react-icons/fa';
 
-function Courses(){
-    let [courses,setCourses] = useState([])
+function Courses() {
+  const [courses, setCourses] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:3000/admin/courses',{
-            method:'GET',
-            headers:{
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + localStorage.getItem('token')
-            }
-        }).then(response => response.json())
-        .then( data =>{
-                // console.log(data);
-                setCourses(data)
-        } 
-        )
-    },[])
-    return <div>
-        <div>
-<Typography variant="h6" style={{padding:"25px 0 0 20px "}}>Course</Typography>
-        </div>
-       <div style={{
-      display:'flex'
-    }}>
-        {courses.map((course, index) => {
-    return <Course key={index} course={course}/>
-})}
+  useEffect(() => {
+    fetch('http://localhost:3000/admin/courses', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer " + localStorage.getItem('token')
+      }
+    }).then(response => response.json())
+      .then(data => {
+        setCourses(data);
+      });
+  }, []);
+
+  return (
+    <div >
+      <div>
+        <Typography variant="h6" style={{ padding: "25px 0 0 20px" }}>Courses</Typography>
+      </div>
+      <Grid container spacing={3} style={{ padding: 20  }}>
+        {courses.map((course, index) => (
+          <Grid item key={index} xs={12} sm={6} md={4} style={{marginTop:15}}>
+            <Course course={course} />
+          </Grid>
+        ))}
+      </Grid>
     </div>
-</div>
+  );
 }
-function Course(props){
-    return <div >
-          <Card sx={{ maxWidth: 345, maxHeight: 500, overflow: 'auto' }}
-          style={{
-            width:'30vw',
-            height:'500px',
-            margin:10,
-            padding:4
-          }}>
-      <CardMedia
-        sx={{ height: 120,
-          width:'100%'
-         }}
-        image={props.course.imageLink}
-      />
-      <CardContent sx={{ flex: '1 1 auto' }}>
+
+function Course(props) {
+  return (
+    <Paper style={{ padding: 16, height: '100%',backgroundColor:'white'}}>
+      <div style={{ height: 140, width: '100%', backgroundImage: `url(${props.course.imageLink})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+      <div style={{ padding: '16px 0' }}>
         <Typography gutterBottom variant="h5" component="div">
-        {props.course.title}
+          {props.course.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-         {props.course.description}
+          {props.course.description}
         </Typography>
-        <br />
-      </CardContent>
-      <div style={{ display: 'flex', alignItems: 'center', padding: '16px' }}>
-          <FaRupeeSign />
-          <Typography variant="body1" style={{ fontWeight: 'bold', marginLeft: 4 }}>
-            {props.course.price}
-          </Typography>
-        </div>
-    </Card>   
-    </div>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <FaRupeeSign />
+        <Typography variant="body1" style={{ fontWeight: 'bold', marginLeft: 4 }}>
+          {props.course.price}
+        </Typography>
+      </div>
+    </Paper>
+  );
 }
 
 export default Courses;

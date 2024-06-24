@@ -11,7 +11,7 @@ app.use(cors());
 const secert = 'mausooq';
 // define mongoose schema
 const userSchema = new mongoose.Schema({
-    userName : {typr : String},
+    userName : {type : String},
     Password : String,
     purchasedCourse :[{type: mongoose.Schema.Types.ObjectId , ref:'course'}]
 })
@@ -69,7 +69,7 @@ app.post('/admin/signup',async (req,res) => {
     const obj = {username: username ,password: password};
     const newAdmin = new Admin(obj);
     await newAdmin.save();
-    const token = jwt.sign({username,role:'admin'},secert,{expiresIn:'1h'})
+    const token = jwt.sign({username,role:'admin'},secert,{expiresIn:'24h'})
     res.json({message:"new admin added",token})
 }
 })
