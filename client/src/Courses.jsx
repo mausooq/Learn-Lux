@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Grid, Paper } from '@mui/material';
 import { FaRupeeSign } from 'react-icons/fa';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom'
 
 function Courses() {
   const [courses, setCourses] = useState([]);
@@ -35,6 +37,7 @@ function Courses() {
 }
 
 function Course(props) {
+  const navigate = useNavigate()
   return (
     <Paper style={{ padding: 16, height: '100%',backgroundColor:'white'}}>
       <div style={{ height: 140, width: '100%', backgroundImage: `url(${props.course.imageLink})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
@@ -52,6 +55,15 @@ function Course(props) {
           {props.course.price}
         </Typography>
       </div>
+      <div style={{
+        marginTop:20
+      }}><Button size='large' variant="contained"
+   onClick={ ()=> {
+    navigate('/admin/editcourse/'+ props.course._id)
+   }
+   }
+>Edit</Button>
+    </div>
     </Paper>
   );
 }

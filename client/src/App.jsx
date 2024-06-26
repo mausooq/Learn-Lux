@@ -14,11 +14,11 @@ function App() {
       <Router>
         <Appbar /> 
         <Routes>
-          <Route path="/admin/editcourse/:courseId" element={<EditCourse />} />
-          <Route path="/admin/addcourse" element={<AddCourse />} />
-          <Route path="/admin/courses" element={<Courses />} />
-          <Route path="/admin/signin" element={<Signin />} />
           <Route path="/admin/signup" element={<Signup />} />
+          <Route path="/admin/signin" element={<Signin />} />
+          <Route path="/admin/courses" element={<Courses />} />
+          <Route path="/admin/addcourse" element={<AddCourse />} />
+          <Route path="/admin/editcourse/:courseId" element={<EditCourse />} />
         </Routes>
       </Router>
     </div>
