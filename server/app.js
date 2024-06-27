@@ -94,7 +94,7 @@ app.post('/admin/courses',authenticateJwt, async (req,res) =>{
 
 app.put('/admin/courses/:courseId', authenticateJwt, async (req,res)=>{
     const course = await Course.findByIdAndUpdate(req.params.courseId,req.body,{new: true})
-    console.log(course);
+    // console.log(course);
     if(course){
         res.json({message: "Course updated Successfully!"})
     }
