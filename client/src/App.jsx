@@ -7,10 +7,18 @@ import AddCourse from './Addcourse.jsx';
 import Courses from './Courses.jsx';
 import './App.css';
 import EditCourse from './EditCourse.jsx';
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 
 function App() {
   return (
     <div style={{ width: "100vw", height: "100vh", background: "#EEEEEE" }}>
+      <RecoilRoot>
       <Router>
         <Appbar /> 
         <Routes>
@@ -21,6 +29,7 @@ function App() {
           <Route path="/admin/editcourse/:courseId" element={<EditCourse />} />
         </Routes>
       </Router>
+     </RecoilRoot>
     </div>
   );
 }
