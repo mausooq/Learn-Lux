@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 function Courses() {
   const [courses, setCourses] = useState([]);
-
+  const navigate = useNavigate()
   useEffect(() => {
     fetch('http://localhost:3000/admin/courses', {
       method: 'GET',
@@ -24,6 +24,11 @@ function Courses() {
     <div >
       <div>
         <Typography variant="h6" style={{ padding: "25px 0 0 20px" }}>Courses</Typography>
+        <div style={{margin:"20px 0 0 20px"}}>
+          <Button variant="contained" onClick={ () =>{
+            navigate('/admin/addcourse')
+          }}>Add Course</Button>
+        </div>
       </div>
       <Grid container spacing={3} style={{ padding: 20  }}>
         {courses.map((course, index) => (
@@ -32,6 +37,7 @@ function Courses() {
           </Grid>
         ))}
       </Grid>
+
     </div>
   );
 }
@@ -65,6 +71,7 @@ function Course(props) {
 >Edit</Button>
     </div>
     </Paper>
+  
   );
 }
 

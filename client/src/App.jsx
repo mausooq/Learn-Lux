@@ -14,6 +14,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
+import Landing from './Landing.jsx';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Router>
         <Appbar /> 
         <Routes>
+        <Route path="/" element={<Landing />} />
           <Route path="/admin/signup" element={<Signup />} />
           <Route path="/admin/signin" element={<Signin />} />
           <Route path="/admin/courses" element={<Courses />} />

@@ -67,7 +67,7 @@ return <div style={{
    }}><Button size='large' variant="outlined"
    onClick={ ()=> {
     const token = localStorage.getItem('token')
-    fetch('http://localhost:3000/admin/courses',
+    fetch('http://localhost:3000/admin/addCourses',
         {method:'POST',
             headers:{
                  'Content-Type': 'application/json',
